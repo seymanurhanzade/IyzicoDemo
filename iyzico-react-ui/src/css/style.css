@@ -1,0 +1,455 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.Link {
+    text-decoration: none;
+}
+
+.component {
+    padding: 5px 10px 5px 10px;
+    min-height: 100vh;
+}
+
+.header {
+    top: 0;
+    position: sticky;
+    display: flow-root;
+    z-index: 999;
+    align-self: flex-start;
+    padding: 6px 40px;
+    background-color: #ffffff;
+    align-items: center;
+}
+
+    .header .header-button {
+        float: inline-end;
+        display: block
+    }
+
+        .header .header-button .btn {
+            display: flex;
+            align-items: center;
+            padding: 0 11px;
+        }
+
+.admin-panel-header {
+    background-color: #ffffff;
+    padding: 10px 20px;
+    font-size: 20px;
+    margin: 0;
+    width: 100%;
+}
+
+    .admin-panel-header span {
+        font-weight: 700;
+        color: #000000;
+    }
+/*MENU*/
+.menu-all {
+    background-color: #132749;
+    min-height: 100vh;
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+    padding: 0px;
+    margin: 0px;
+}
+
+    .menu-all .container-fluid, .menu-all .container-fluid .navbar-nav {
+        display: flow;
+        align-items: center;
+    }
+
+        .menu-all .container-fluid .navbar-nav {
+            display: flow;
+            align-items: center;
+            width: 100%;
+        }
+
+            .menu-all .container-fluid .navbar-nav .nav-item {
+                padding: 0px 10px;
+                margin: 4px 5px;
+            }
+
+                .menu-all .container-fluid .navbar-nav .nav-item .nav-link {
+                    color: #ffffff;
+                    font-weight: 500;
+                }
+
+                    .menu-all .container-fluid .navbar-nav .nav-item .nav-link.active {
+                        color: #ffffff;
+                        font-weight: 500;
+                        background-color: #203d6f;
+                        border-radius: 50px;
+                    }
+
+                    .menu-all .container-fluid .navbar-nav .nav-item .nav-link:hover {
+                        color: #ffffff;
+                        font-weight: 500;
+                        border-radius: 50px;
+                        background-color: #203d6f;
+                    }
+
+                    .menu-all .container-fluid .navbar-nav .nav-item .nav-link .navlink-icon-p {
+                        display: flex;
+                        align-items: center;
+                    }
+
+                    .menu-all .container-fluid .navbar-nav .nav-item .nav-link.dropdown-toggle {
+                        display: flex;
+                        align-items: center;
+                        width: 100%;
+                    }
+
+.navbar .nav-link.dropdown-toggle::after {
+    margin-left: auto; /* oku en sağa iter */
+}
+
+.menu-all .container-fluid .navbar-nav .nav-item .dropdown-menu {
+    background-color: #203d6f;
+    border: 0;
+    padding: 6px 12px;
+}
+
+    .menu-all .container-fluid .navbar-nav .nav-item .dropdown-menu .dropdown-item {
+        margin: 4px 5px !important;
+        color: white;
+    }
+
+        .menu-all .container-fluid .navbar-nav .nav-item .dropdown-menu .dropdown-item:hover {
+            background-color: #132749;
+            border-radius: 10px;
+        }
+
+        .menu-all .container-fluid .navbar-nav .nav-item .dropdown-menu .dropdown-item.active {
+            color: white;
+            background-color: #132749;
+            border-radius: 10px;
+        }
+
+.navbar-expand-lg .navbar-nav .dropdown-menu {
+    position: relative;
+}
+.offcanvas.offcanvas-start.show .offcanvas-body .navbar-nav .nav-item .nav-link {
+    padding: 9px 10px;
+    color: #132749;
+}
+    .offcanvas.offcanvas-start.show .offcanvas-body .navbar-nav .nav-item .nav-link.active {
+        color: #132749;
+        font-weight: 500;
+        background-color: #1327482e;
+        border-radius: 50px;
+    }
+.offcanvas.offcanvas-start.show .offcanvas-body .navbar-nav .nav-item .dropdown-menu {
+    background-color: #ffffff;
+    border: 0;
+    padding: 6px 12px;
+}
+    .offcanvas.offcanvas-start.show .offcanvas-body .navbar-nav .nav-item .dropdown-menu .dropdown-item {
+        color: #132749;
+        
+    }
+        .offcanvas.offcanvas-start.show .offcanvas-body .navbar-nav .nav-item .dropdown-menu .dropdown-item.active {
+            background-color: #d4d8de;
+            border-radius: 10px;
+        }
+
+.offcanvas.offcanvas-start.show .d-flex {
+    background-color: #132749;
+}
+    .offcanvas.offcanvas-start.show .d-flex .admin-panel-header {
+        background-color: #132749;
+        padding: 10px 20px;
+        font-size: 20px;
+        margin: 0;
+        width: 100%;
+        color: white;
+    }
+        .offcanvas.offcanvas-start.show .d-flex .admin-panel-header span {
+            font-weight: 700;
+            color: white;
+        }
+@media only screen and (max-width: 991px) {
+    .menu-all {
+        display: inline;
+        position: static;
+        top: 0px !important;
+        align-self: flex-start;
+        min-height: 0vh;
+    }
+    
+}
+/*MENU*/
+
+
+.page-baslik {
+    padding: 10px 7px;
+    font-weight: bold;
+    font-size: 20px;
+    border-bottom: 1px solid #efefef;
+}
+.category-list-all .table {
+    table-layout: fixed;
+    width: 100%;
+}
+.category-list-all .table {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+/*PRODUCT*/
+.item-list ul li {
+    list-style: none;
+}
+
+.item-li {
+    border-radius: 6px;
+    border: 1px solid #dddddd;
+    padding: 11px 15px;
+    background-color: #e1e1e11a;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.add-item {
+    width: 65%;
+    margin: auto;
+}
+.sepete-ekle-btn {
+    background-color: #ff9347;
+    color: white;
+}
+
+.add-item .input-group-text {
+    width: 30%;
+}
+
+.item-create-button {
+    width: 24%;
+    margin: auto;
+}
+
+.sepete-ekle-btn:hover {
+    background-color: #d56a1e;
+    color: white;
+}
+.table td, table th {
+    width: 0%;
+    align-content: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.table .product-img-top {
+    width: 60%;
+}
+/*PRODUCT*/
+/*DETAIL PAGE*/
+.detail-page .urun-baslik {
+    font-size: 29px;
+    font-weight: bold;
+}
+
+.images-list .card {
+    width: 120px;
+    margin: auto;
+    height: 120px;
+    transition: transform 0.1s ease-in-out;
+}
+
+    .images-list .card button {
+        width: 100%;
+        height: 100%;
+        border: 1px solid #ddd;
+        background: #fff;
+        padding: 6px;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .images-list .card:hover {
+        transform: scale(1.05);
+    }
+
+    .images-list .card .img-list-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+    }
+
+.detail-img .detail-img-container {
+    width: 580px;
+    margin: auto;
+    height: 670px;
+}
+
+    .detail-img .detail-img-container .detail-img-container-cont {
+        width: 100%;
+        height: 100%;
+        border: 1px solid #ddd;
+        background: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+        .detail-img .detail-img-container .detail-img-container-cont .card-img-top {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+.detail-page .detail-price {
+    font-size: 35px;
+    font-weight: bold;
+    color: #269f00;
+}
+
+.item-collapseGroup {
+    background-color: white;
+    border-radius: 6px;
+    border: 1px solid #d5d5d5;
+    padding: 21px;
+}
+
+.item-detail-collapse {
+    border-top: 1px solid #d5d5d5;
+}
+
+.item-collapseGroup .collapse-buttons {
+    padding: 0px 0px 10px 0px;
+}
+
+    .item-collapseGroup .collapse-buttons a.nav-link {
+        color: #000759;
+    }
+
+        .item-collapseGroup .collapse-buttons a.nav-link.active {
+            color: #ff861e;
+        }
+
+.item-collapseGroup .item-detail-collapse .card {
+    border: 0px;
+    background-color: transparent;
+    padding: 17px 0px 0px 0px;
+}
+
+.saticiya-sor {
+    background-color: #e7e7e7;
+}
+
+    .saticiya-sor:hover {
+        background-color: #dddbdb;
+    }
+/*DETAIL PAGE*/
+.icon-and-links {
+    color: #0a008b;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+    .icon-and-links .icon-link {
+        font-size: 18px;
+        color: #ffa22a;
+        padding: 0px 5px;
+    }
+
+/* ADMİN PAGE*/
+.yonetim-icerik {
+    padding: 20px;
+}
+
+    .yonetim-icerik .grafic {
+        padding: 13px;
+        border: 1px solid #e9e9e9;
+        border-radius: 4px;
+    }
+
+        .yonetim-icerik .grafic .grafic-icerik {
+            display: flex;
+            justify-content: center;
+        }
+
+        .yonetim-icerik .grafic .grafic-baslik {
+            font-size: 18px;
+            color: #594ba3;
+            font-weight: bold;
+        }
+
+        .yonetim-icerik .grafic .count-user {
+            background-color: #188b1f;
+            display: flex;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            align-items: center;
+            padding: 0;
+            justify-content: center;
+        }
+
+            .yonetim-icerik .grafic .count-user .cerceve {
+                background-color: #ffffff;
+                width: 90px;
+                height: 90px;
+                border-radius: 50%;
+                padding: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 !important;
+            }
+
+                .yonetim-icerik .grafic .count-user .cerceve .toplam-sayi {
+                    font-size: 43px;
+                    color: #083a0b;
+                }
+
+.grafic-page-baslik {
+    font-size: 19px;
+    display: flex;
+    color: #188b1f;
+    align-items: center;
+}
+
+.modal-backdrop {
+    --bs-backdrop-bg: #0000004a;
+}
+
+
+.css-1ahi5tg-MuiSnackbar-root {
+    right: 24px !important;
+    left: auto !important;
+    top: 114px !important;
+    display: block !important;
+}
+
+/*LOGIN*/
+.login-page {
+    min-height: 100vh;
+    text-align: center;
+}
+
+    .login-page .login-container {
+        padding-top: 15%;
+    }
+
+        .login-page .login-container .card {
+            border-radius: 15px;
+            background-color: #ddddff;
+            box-shadow: 0px 0px 20px 0px #b1a8a838;
+            padding: 33px 19px;
+            margin: auto;
+            border: 1px solid #d1d1d1;
+        }
+
+            .login-page .login-container .card .card-body {
+                padding: 30px 41px;
+                width: 100%;
+                height: 100%;
+            }
+/*LOGIN*/
