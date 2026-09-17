@@ -7,10 +7,10 @@ export const getProducts = async () => {
 export const getProductById = async (productId) => {
     try {
         const res = await axios.get(`/api/Product/${productId}`);
-        console.log("Ürün detaylarý baþarýyla alýndý:", res.data);
+        console.log("ÃœrÃ¼n detaylarÄ± baÅŸarÄ±yla alÄ±ndÄ±:", res.data);
         return res;
     } catch (error) {
-        console.error("Sayfa yüklenirken bir hata oluþtu:", error);
+        console.error("Sayfa yÃ¼klenirken bir hata oluÅŸtu:", error);
     }
     
 }
@@ -35,7 +35,7 @@ export const addProduct = async (formData) => {
         });
         return res;
     } catch (error) {
-        console.error("Ürün eklenirken bir hata oluþtu:", error);
+        console.error("ÃœrÃ¼n eklenirken bir hata oluÅŸtu:", error);
     }
 }
 
@@ -44,7 +44,7 @@ export const deleteProduct = async (productId) => {
         const res = await axios.delete(`/api/Product/${productId}`);
         return res;
     } catch (error) {
-        console.error("Ürün silinirken bir hata oluþtu:", error);
+        console.error("ÃœrÃ¼n silinirken bir hata oluÅŸtu:", error);
     }
 
 }
@@ -67,6 +67,6 @@ export const updateProduct = async (productId, formData) => {
         const res = axios.put(`/api/Product/${productId}`, sendData);
         return res;
     } catch (error) {
-        console.error("Ürün güncellenirken bir hata oluþtu:", error);
+        console.error("ÃœrÃ¼n gÃ¼ncellenirken bir hata oluÅŸtu:", error);
     }
 }

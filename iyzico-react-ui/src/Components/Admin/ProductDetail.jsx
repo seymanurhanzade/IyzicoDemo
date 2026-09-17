@@ -36,7 +36,7 @@ export default function ProductDetail() {
                                     <div className="detail-img-container">
                                         <div className="detail-img-container-cont">
                                             <img
-                                                src={`http://localhost:5174/${selectedImage}`}
+                                                src={`/${selectedImage}`}
                                                 className="card-img-top"
                                                 alt={productData.productName}
                                             />
@@ -51,7 +51,7 @@ export default function ProductDetail() {
                                                 className="border-0 bg-transparent p-0"
                                                 onClick={() => setSelectedImage(imageItem.imageUrl)}>
                                                 <img
-                                                    src={`http://localhost:5174/${imageItem.imageUrl}`}
+                                                    src={`/${imageItem.imageUrl}`}
                                                     className="img-list-img"
                                                     alt={productData.productName}
                                                     style={{ cursor: "pointer" }} />

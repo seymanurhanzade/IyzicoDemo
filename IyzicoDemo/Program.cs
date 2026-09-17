@@ -3,119 +3,151 @@ using IyzicoDemo.Entity;
 using IyzicoDemo.Identity;
 using IyzicoDemo.Services;
 using IyzicoDemo.Settings;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Services
 builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddRazorPages();
 
-builder.Services.Configure<IyzicoOption>(builder.Configuration.GetSection(IyzicoOption.SectionName));
+// Iyzico
+builder.Services.Configure<IyzicoOption>(
+    builder.Configuration.GetSection(IyzicoOption.SectionName)
+);
 
+// Database
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection")
+    )
+);
 
-builder.Services.AddIdentity<AppUser, IdentityRole>(option => {     
-    option.Password.RequireDigit = true;
-    option.Password.RequiredLength = 6;
-    option.Password.RequireNonAlphanumeric = false;
-    option.Password.RequireUppercase = true;
-    option.Password.RequireLowercase = true;
-
-    option.User.RequireUniqueEmail = true;
-    
-}).AddEntityFrameworkStores<AppDbContext>()
-    .AddDefaultTokenProviders();
-
-builder.Services.AddAuthentication().AddJwtBearer(options =>
+// Identity
+builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 {
-    options.Authority = builder.Configuration["Api:Authority"];
-    options.Audience = builder.Configuration["Api:Audience"];
-    options.TokenValidationParameters = new TokenValidationParameters
+    options.Password.RequireDigit = true;
+    options.Password.RequiredLength = 6;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = true;
+    options.Password.RequireLowercase = true;
+
+    options.User.RequireUniqueEmail = true;
+
+})
+.AddEntityFrameworkStores<AppDbContext>()
+.AddDefaultTokenProviders();
+
+// JWT
+builder.Services.AddAuthentication()
+    .AddJwtBearer(options =>
     {
-        ValidateAudience = true,
-        //ValidAudience = builder.Configuration["Api:Audience"],
-        ValidateIssuer = true,
-        ValidIssuer = builder.Configuration["Api:ValidIssuer"],
-        ValidateLifetime = true
-    };
+        options.Authority = builder.Configuration["Api:Authority"];
+        options.Audience = builder.Configuration["Api:Audience"];
 
-});
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateAudience = true,
+            ValidateIssuer = true,
+            ValidIssuer = builder.Configuration["Api:ValidIssuer"],
+            ValidateLifetime = true
+        };
+    });
 
-builder.Services.AddCors(builder =>
+// CORS
+builder.Services.AddCors(options =>
 {
-    builder.AddDefaultPolicy(policy =>
+    options.AddDefaultPolicy(policy =>
     {
-        policy.WithOrigins("http://localhost:5173")
-              .AllowAnyMethod()
-              .AllowAnyHeader();
+        policy
+            .WithOrigins(
+                "http://localhost:5173",
+                "http://localhost:3000"
+            )
+            .AllowAnyMethod()
+            .AllowAnyHeader();
     });
 });
 
+// Services
 builder.Services.AddScoped<IPaymentService, IyzicoPaymentService>();
 builder.Services.AddScoped<ICartService, CartService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 
+
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-    app.UseExceptionHandler("/Home/Error");
-    app.UseHsts();
-}
-//using (var scope = app.Services.CreateScope())
-//{
-//    var services = scope.ServiceProvider;
-//    await SeedData.SeedRoleAsync(services);
-//}
-using ( var scope = app.Services.CreateScope())
+
+// Swagger
+app.UseSwagger();
+app.UseSwaggerUI();
+
+
+// Database Migration + Seed
+using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
+
+    var dbContext = services.GetRequiredService<AppDbContext>();
+
+    await dbContext.Database.MigrateAsync();
+
     await SeedData.SeedAdminAsync(services);
 }
-app.UseHttpsRedirection();
+
+
+// HTTPS
+if (!app.Environment.IsEnvironment("Docker"))
+{
+    app.UseHttpsRedirection();
+}
+
+
 app.UseStaticFiles();
 
 app.UseRouting();
 
 app.UseCors();
+
 app.UseAuthentication();
+
 app.UseAuthorization();
 
+
+// Controllers
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}"
+);
+
+
+// Payment success
 app.MapGet("/payment/success", (string? session_id) =>
 {
     return Results.Ok(new
     {
-        message = "Ödeme baþarýlý sayfasýna geldiniz.",
+        message = "Ã–deme baÅŸarÄ±lÄ± sayfasÄ±na geldiniz.",
         sessionId = session_id
     });
 });
 
+
+// Payment cancel
 app.MapGet("/payment/cancel", () =>
 {
     return Results.Ok(new
     {
-        message = "Ödeme iptal edildi."
+        message = "Ã–deme iptal edildi."
     });
 });
+
+
 app.Run();

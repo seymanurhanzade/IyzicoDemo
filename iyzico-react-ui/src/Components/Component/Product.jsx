@@ -122,7 +122,7 @@ export default function Product() {
                                     onClick={() => navigate(`/urun-detay/${item.id}`)}>
                                     <td>
                                         <img
-                                            src={`http://localhost:5174/${item.productImages?.[0]?.imageUrl}`}
+                                            src={`/${item.productImages?.[0]?.imageUrl}`}
                                             className="product-img-top"
                                             alt={item.productName} />
                                     </td>

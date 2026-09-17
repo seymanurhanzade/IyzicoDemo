@@ -24,7 +24,7 @@ export const updateCategory = async (id, categoryData) => {
     try {
         const data = new FormData();
         data.append("CategoryName", categoryData.CategoryName)
-        const res = await axios.put(`http://localhost:5174/api/Product/update-category/${id}`, data);
+        const res = await axios.put(`/api/Product/update-category/${id}`, data);
         return res.data;
     } catch (error) {
         console.error("Service Hatası:", error.response?.data || error.message);
